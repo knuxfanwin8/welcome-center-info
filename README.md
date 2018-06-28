@@ -63,7 +63,7 @@ BrandImg=%brand%\logo.png ;This is the logo that appears on the top right.
 Banner= ;This is the background of the app description part of the window.
 PreviewPicture= ;This is the program's icon in the app description part of the window.
 BannerTitle= ;This is the title on the banner. 
-BannerDetail= ;This is the description on the
+BannerDetail= ;This is the description on the banner.
 IconPicture= ;This is the icon that appears on the app button on the bottom part of the window.
 ColorTextBanner= ;This is the font color on the banner in hex. For example, 000000 is black and ffffff is white.
 ```
