@@ -59,9 +59,6 @@ It_Text= ;This is the description of the app in the application picker on the bo
 Tooltip= ;This is what appears when you hover on the button of the app in the application picker on the bottom.
 Target=C:\Windows\explorer.exe ;This is the file that is ran when you press the grey button (the same one as in CmdText)
 TargetX64=C:\Windows\explorer.exe ;Same as above.
-SetupTarget=C:\Windows\explorer.exe ;Not sure what this does. Just set this to the Target.
-SetupTargetX64=C:\Windows\explorer.exe ;Same as above.
-BtnType=Gray ;Button type. Button types are explained in the Button types section.
 BrandImg=%brand%\logo.png ;This is the logo that appears on the top right.
 Banner= ;This is the background of the app description part of the window.
 PreviewPicture= ;This is the program's icon in the app description part of the window.
@@ -70,7 +67,12 @@ BannerDetail= ;This is the description on the
 IconPicture= ;This is the icon that appears on the app button on the bottom part of the window.
 ColorTextBanner= ;This is the font color on the banner in hex. For example, 000000 is black and ffffff is white.
 ```
-
+Optional lines:
+```
+BtnType=Gray ;Button type. Button types are explained in the Button types section. This defaults to Gray.
+SetupTarget=C:\Windows\explorer.exe ;Same thing as Target.
+SetupTargetX64=C:\Windows\explorer.exe ;Same as TargetX64.
+```
 Example:
 
 ```
@@ -81,8 +83,6 @@ It_Text=It's a very cool app!
 Tooltip=Tooltip
 Target=C:\Windows\explorer.exe
 TargetX64=C:\Windows\explorer.exe
-SetupTarget=C:\Windows\explorer.exe
-SetupTargetX64=C:\Windows\explorer.exe
 BtnType=Gray
 BrandImg=%brand%\logo.png
 Banner=%brand%\WelcomeCenterBanner.png
@@ -95,6 +95,32 @@ ColorTextBanner=ffffff
 
 This should look like this:
 ![Welcome Center screenshot](https://knuxfanwin8.xyz/acer/Stuff/Tutorials/CoolApp.png)
+
+### Additional research
+If any of the text values (e.g. ``It_Text``, ``BannerTitle`` and simmilar) do not exist, they just appear empty.
+
+If ``Tooltip`` doesn't exist, the tooltip will simply not appear. If ``BtnType`` doesn't exist, it will just be Gray. If ``Banner`` is not specified, it will just turn into the normal Welcome Center banner (Banner=%brand%\WelcomeCenterBanner.png).
+
+You might have noticed the ``Target``, ``TargetX64``, ``SetupTarget`` and ``SetupTargetX64`` values. 
+
+``SetupTarget`` is executed if ``Target`` doesn't exist, and the same thing goes for the X64 values.
+
+**TODO: Does the x64 value actually change anything if you use a 64 bit system? Check this on an x86 system. For now, all I know is that ``TargetX64``/``SetupTargetX64`` can be left empty with ``Target``/``SetupTarget`` specified and will still work fine, but this was tested on an x64 system.**
+
+**TODO: I just found those two values: ``Argument`` and ``ArgumentX64``. These are most likely for running executables with certain arguments. Still, I'll have to find an app that is good for testing and see how exactly that works. Example of value usage:**
+```
+Argument=/src welcomecenteroem
+ArgumentX64=/src welcomecenteroem
+```
+
+**TODO: More values to go into! Found these two:**
+```
+DoubleCondition=
+DoubleConditionX64=
+Target-NOT=
+TargetX64-NOT=
+```
+**Not sure what they do, but I'm theorizing that ``DoubleCondition`` is checking for another thing besides the Target, and ``Target-NOT`` disables the option if a file is found. I'll have a lot to test tommorow!**
 
 ## Button types
 The following button types are available:
@@ -116,12 +142,13 @@ There are several language files in the folder. The unnamed file only seems to c
 This version of Welcome Center is Acer branded. I still didn't figure out how it checks for that though.
 
 ## App list (in ``en.ini``)
-Norton Internet Security (2011, 60 day trial), McAfee Internet Security, iGoogle, Brand Game Console (SIDENOTE 5), Brand GameZone, eBay, Mercado (SIDENOTE 1), Norton Online Backup, Microsoft Office 2007, Netflix, Skype, NetZero (SIDENOTE 2), EarthLink (SIDENOTE 3), Microsoft Works (90-85 and SE 9), MyWinLocker, Nero 9, Adobe Photoshop Elements 7/8, Brand Accessory Store, eSobi, Barnes & Noble Desktop Reader (SIDENOTE 4), Times Reader 2.0
+Norton Internet Security (2011, 60 day trial), McAfee Internet Security, iGoogle, Brand Game Console, Brand GameZone, eBay, Mercado (SIDENOTE 1), Norton Online Backup, Microsoft Office 2007, Netflix, Skype, NetZero (SIDENOTE 2), EarthLink (SIDENOTE 3), Microsoft Works (90-85 and SE 9), MyWinLocker, Nero 9, Adobe Photoshop Elements 7/8, Brand Accessory Store, eSobi, Barnes & Noble Desktop Reader (SIDENOTE 4), Times Reader 2.0
 
 Sidenotes:
+
 Brand is the currently chosen brand.
+
 1. Oddly enough, this one was entirely in Mexican, despite this being an English config file.
 2. This seems to be an ad for some ISP.
 3. Another ad for an ISP.
 4. Some kind of e-book reader.
-5. According to the files, this is WildTangent.
