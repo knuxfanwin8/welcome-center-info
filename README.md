@@ -1,9 +1,13 @@
 # Welcome Center
+![Welcome Center screenshot](https://raw.githubusercontent.com/knuxfanwin8/welcome-center-info/master/WelcomeCenterScreenshot.png)
+
 Welcome Center is a program that showcases several programs if it finds them on your computer.
 The majority of software in Welcome Center is either obsolete or no longer updated. If you don't have any of the software specified in the program's language files (I'll talk about this in a minute!) it will display an error message saying "No content".
 Adding your own software to Welcome Center is suprisingly easy: you just have to modify the language files in the Welcome Center folder. They are named in a scheme of language.ini, for example "en.ini"
 
-Welcome Center is available for download from [here](https://knuxfanwin8.xyz/acer/Stuff/Software/SetupOWC%20(Acer%20Welcome%20Center)%20(read%20tutorial).exe).
+Welcome Center is available for download from [here](https://mega.nz/#!yC4jiYSA!ekG2NPBiAopkU3RGRVVQ7sPXC8EspxceuCcH_Rv1EDo). 
+
+**NOTE: Welcome Center is provided under fair use for research purposes.**
 
 ## Here's what you have to do to add your own app:
 1. Open your language file (for example ``en.ini``). To learn more about language files, read the Languages section below.
@@ -63,7 +67,7 @@ BrandImg=%brand%\logo.png ;This is the logo that appears on the top right.
 Banner= ;This is the background of the app description part of the window.
 PreviewPicture= ;This is the program's icon in the app description part of the window.
 BannerTitle= ;This is the title on the banner. 
-BannerDetail= ;This is the description on the
+BannerDetail= ;This is the description on the banner.
 IconPicture= ;This is the icon that appears on the app button on the bottom part of the window.
 ColorTextBanner= ;This is the font color on the banner in hex. For example, 000000 is black and ffffff is white.
 ```
@@ -94,7 +98,7 @@ ColorTextBanner=ffffff
 ```
 
 This should look like this:
-![Welcome Center screenshot](https://knuxfanwin8.xyz/acer/Stuff/Tutorials/CoolApp.png)
+![Welcome Center screenshot](https://raw.githubusercontent.com/knuxfanwin8/welcome-center-info/master/CoolApp.png)
 
 ### Additional research
 If any of the text values (e.g. ``It_Text``, ``BannerTitle`` and simmilar) do not exist, they just appear empty.
@@ -103,33 +107,37 @@ If ``Tooltip`` doesn't exist, the tooltip will simply not appear. If ``BtnType``
 
 You might have noticed the ``Target``, ``TargetX64``, ``SetupTarget`` and ``SetupTargetX64`` values. 
 
-``SetupTarget`` is executed if ``Target`` doesn't exist, and the same thing goes for the X64 values.
+``SetupTarget`` is executed if ``Target`` doesn't exist, and the same thing goes for the X64 values. 
 
-**TODO: Does the x64 value actually change anything if you use a 64 bit system? Check this on an x86 system. For now, all I know is that ``TargetX64``/``SetupTargetX64`` can be left empty with ``Target``/``SetupTarget`` specified and will still work fine, but this was tested on an x64 system.**
+If ``SetupTargetX64`` is not specified/is empty or the file to which the value points 
+
+If the file specified in ``DoubleCondition`` is found, the entry is shown. If it doesn't, it's not. If ``DoubleCondition`` is not specified/is empty, it is ignored and the entry is shown anyways (if the ``Target``/``SetupTarget`` are found of course).
+
+If the file specified in ``Target-NOT`` is found, the entry is not shown. Same thing with its X64 counterpart (``TargetX64-NOT``).
 
 **TODO: I just found those two values: ``Argument`` and ``ArgumentX64``. These are most likely for running executables with certain arguments. Still, I'll have to find an app that is good for testing and see how exactly that works. Example of value usage:**
 ```
 Argument=/src welcomecenteroem
 ArgumentX64=/src welcomecenteroem
 ```
+**Do they work on ``Target``, ``SetupTarget`` or both?**
 
-**TODO: More values to go into! Found these two:**
-```
-DoubleCondition=
-DoubleConditionX64=
-Target-NOT=
-TargetX64-NOT=
-```
-**Not sure what they do, but I'm theorizing that ``DoubleCondition`` is checking for another thing besides the Target, and ``Target-NOT`` disables the option if a file is found. I'll have a lot to test tommorow!**
+## Buttons
+Every button's graphics are stored in separate folders placed in the ``\IMG\_Btn`` directory. The name of the button's folder represents the button style name, which can then be used by setting the ``BtnType`` value to it, for example ``BtnType=Blue`` or ``BtnType=eMachines``.
 
-## Button types
+Every button folder contains images named ``l.png`` (which is the left part of the button), ``m.png`` (which is the middle) and ``r.png`` (which is the right part). The only exception to this rule is the style in the ``Generic`` button folder - this one contains the background for the bottom picker buttons.
+
 The following button types are available:
-Gray (Default), Blue, Green and Black. 
-There are also the following:
-Acer (copy of Green)
-eMachines (copy of Blue)
-Gateway (copy of Black)
-Packard Bell (copy of Gray)
+- Gray (Default)
+- Blue 
+- Green 
+- Black 
+
+There are also copies of those buttons, this time with brand names:
+- Acer (copy of Green)
+- eMachines (copy of Blue)
+- Gateway (copy of Black)
+- Packard Bell (copy of Gray)
 
 There's also a folder for Generic, but it stores the images for the buttons on the bottom picker and cannot be used as a normal button.
 
