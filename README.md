@@ -1,8 +1,10 @@
 # Welcome Center
 ![Welcome Center screenshot](https://raw.githubusercontent.com/knuxfanwin8/welcome-center-info/master/WelcomeCenterScreenshot.png)
 
-Welcome Center is a program that showcases several programs if it finds them on your computer.
-The majority of software in Welcome Center is either obsolete or no longer updated. If you don't have any of the software specified in the program's language files (I'll talk about this in a minute!) it will display an error message saying "No content".
+Welcome Center is a preinstalled program that was installed on Acer, eMachines, Packard Bell and Gateway computers from 2009 to 2011. It showcased some of the pre-installed trial software/branded software. 
+
+If you don't have any of the software specified in the program's language files (I'll talk about this in a minute!) it will display an error message saying "No content".
+
 Adding your own software to Welcome Center is suprisingly easy: you just have to modify the language files in the Welcome Center folder. They are named in a scheme of language.ini, for example "en.ini"
 
 Welcome Center is available for download from [here](https://mega.nz/#!yC4jiYSA!ekG2NPBiAopkU3RGRVVQ7sPXC8EspxceuCcH_Rv1EDo). 
@@ -101,6 +103,10 @@ This should look like this:
 ![Welcome Center screenshot](https://raw.githubusercontent.com/knuxfanwin8/welcome-center-info/master/CoolApp.png)
 
 ### Additional research
+If you change the ``FormName`` value on top of the language file, you will change the window title.
+
+The item number decides the item's order, for example ``Item25`` appears after ``Item21``. You can name the items any way you want, for example ``Test20`` instead of ``Item20``, but I prefer to keep them named ``Item<number>`` to be consistent with the rest of the items.
+
 If any of the text values (e.g. ``It_Text``, ``BannerTitle`` and simmilar) do not exist, they just appear empty.
 
 If ``Tooltip`` doesn't exist, the tooltip will simply not appear. If ``BtnType`` doesn't exist, it will just be Gray. If ``Banner`` is not specified, it will just turn into the normal Welcome Center banner (Banner=%brand%\WelcomeCenterBanner.png).
@@ -111,21 +117,24 @@ You might have noticed the ``Target``, ``TargetX64``, ``SetupTarget`` and ``Setu
 
 If ``SetupTargetX64`` is not specified/is empty or the file to which the value points 
 
+If the full path to the file (for example ``C:\Users\knuxfanwin8\file.exe``) is not specified, the program looks for the file with the specified filename in its own directory
+
+Example: let's say the Welcome Center directory is C:\WelcomeCenter. If we write ``Target=C:\File\file.exe`` Welcome Center will open ``file.exe`` in the ``C:\File`` directory, but if we only write ``Target=file.exe`` the program will open ``file.exe`` in the ``C:\WelcomeCenter`` directory.
+
 If the file specified in ``DoubleCondition`` is found, the entry is shown. If it doesn't, it's not. If ``DoubleCondition`` is not specified/is empty, it is ignored and the entry is shown anyways (if the ``Target``/``SetupTarget`` are found of course).
 
 If the file specified in ``Target-NOT`` is found, the entry is not shown. Same thing with its X64 counterpart (``TargetX64-NOT``).
 
-**TODO: I just found those two values: ``Argument`` and ``ArgumentX64``. These are most likely for running executables with certain arguments. Still, I'll have to find an app that is good for testing and see how exactly that works. Example of value usage:**
-```
-Argument=/src welcomecenteroem
-ArgumentX64=/src welcomecenteroem
-```
-**Do they work on ``Target``, ``SetupTarget`` or both?**
+The ``Argument`` and ``ArgumentX64`` values can be use to run the program specified in ``Target``, ``SetupTarget`` and its X64 counterparts with a certain parameter.
 
 ## Buttons
 Every button's graphics are stored in separate folders placed in the ``\IMG\_Btn`` directory. The name of the button's folder represents the button style name, which can then be used by setting the ``BtnType`` value to it, for example ``BtnType=Blue`` or ``BtnType=eMachines``.
 
 Every button folder contains images named ``l.png`` (which is the left part of the button), ``m.png`` (which is the middle) and ``r.png`` (which is the right part). The only exception to this rule is the style in the ``Generic`` button folder - this one contains the background for the bottom picker buttons.
+
+If the ``l.png`` or ``r.png`` height is different from the ``m.png`` height, it is automatically squished to fit the ``m.png`` file's height.
+
+An average button's height is 33px. The ``m.png`` width is 1px, the ``l.png`` is 10px wide and ``r.png`` is 8px wide.
 
 The following button types are available:
 - Gray (Default)
@@ -147,7 +156,9 @@ Welcome Center loads a language file matching the operating system's language. F
 There are several language files in the folder. The unnamed file only seems to contain a few lines, possibly for any case in which the system language was not found. There is also a file called OEMWelcomeCenter.ini (the same as the executable) which contains lines that are displayed whenever there is no content to display (when none of the files specified in the chosen language file are found)
 
 ## Brands
-This version of Welcome Center is Acer branded. I still didn't figure out how it checks for that though.
+**TODO: How is the brand detected in Welcome Center? My guess is there was a new executable built for each brand, but I'd have to take a closer look at it.**
+
+The brands are **most likely** Acer (like in this version of Welcome Center), eMachines, Gateway and Packard Bell.
 
 ## App list (in ``en.ini``)
 Norton Internet Security (2011, 60 day trial), McAfee Internet Security, iGoogle, Brand Game Console, Brand GameZone, eBay, Mercado (SIDENOTE 1), Norton Online Backup, Microsoft Office 2007, Netflix, Skype, NetZero (SIDENOTE 2), EarthLink (SIDENOTE 3), Microsoft Works (90-85 and SE 9), MyWinLocker, Nero 9, Adobe Photoshop Elements 7/8, Brand Accessory Store, eSobi, Barnes & Noble Desktop Reader (SIDENOTE 4), Times Reader 2.0
