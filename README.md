@@ -115,8 +115,6 @@ You might have noticed the ``Target``, ``TargetX64``, ``SetupTarget`` and ``Setu
 
 ``SetupTarget`` is executed if ``Target`` doesn't exist, and the same thing goes for the X64 values. 
 
-If ``SetupTargetX64`` is not specified/is empty or the file to which the value points 
-
 If the full path to the file (for example ``C:\Users\knuxfanwin8\file.exe``) is not specified, the program looks for the file with the specified filename in its own directory
 
 Example: let's say the Welcome Center directory is C:\WelcomeCenter. If we write ``Target=C:\File\file.exe`` Welcome Center will open ``file.exe`` in the ``C:\File`` directory, but if we only write ``Target=file.exe`` the program will open ``file.exe`` in the ``C:\WelcomeCenter`` directory.
