@@ -154,9 +154,14 @@ Welcome Center loads a language file matching the operating system's language. F
 There are several language files in the folder. The unnamed file only seems to contain a few lines, possibly for any case in which the system language was not found. There is also a file called OEMWelcomeCenter.ini (the same as the executable) which contains lines that are displayed whenever there is no content to display (when none of the files specified in the chosen language file are found)
 
 ## Brands
-**TODO: How is the brand detected in Welcome Center? My guess is there was a new executable built for each brand, but I'd have to take a closer look at it.**
+**TODO: How is the brand detected in Welcome Center? ~~My guess is there was a new executable built for each brand, but I'd have to take a closer look at it.~~ BREAKTHROUGH: I extracted the installer via 7-zip and found these two things:**
 
-The brands are **most likely** Acer (like in this version of Welcome Center), eMachines, Gateway and Packard Bell.
+- There are files for all four brands;
+- Brand checks are handled by an NSIS plugin.
+
+**I'll still have to take a better look at this.**
+
+The brands are Acer, eMachines, Gateway and Packard Bell.
 
 ## App list (in ``en.ini``)
 Norton Internet Security (2011, 60 day trial), McAfee Internet Security, iGoogle, Brand Game Console, Brand GameZone, eBay, Mercado (SIDENOTE 1), Norton Online Backup, Microsoft Office 2007, Netflix, Skype, NetZero (SIDENOTE 2), EarthLink (SIDENOTE 3), Microsoft Works (90-85 and SE 9), MyWinLocker, Nero 9, Adobe Photoshop Elements 7/8, Brand Accessory Store, eSobi, Barnes & Noble Desktop Reader (SIDENOTE 4), Times Reader 2.0
