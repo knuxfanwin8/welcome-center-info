@@ -154,13 +154,12 @@ Welcome Center loads a language file matching the operating system's language. F
 There are several language files in the folder. The unnamed file only seems to contain a few lines, possibly for any case in which the system language was not found. There is also a file called OEMWelcomeCenter.ini (the same as the executable) which contains lines that are displayed whenever there is no content to display (when none of the files specified in the chosen language file are found)
 
 ## Brands
-**TODO: How is the brand detected in Welcome Center? ~~My guess is there was a new executable built for each brand, but I'd have to take a closer look at it.~~ BREAKTHROUGH: I extracted the installer via 7-zip and found these two things:**
+**TODO: How is the brand detected in Welcome Center? ~~My guess is there was a new executable built for each brand, but I'd have to take a closer look at it.~~ ~~BREAKTHROUGH: I extracted the installer via 7-zip and found these two things:**~~
 
 - There are files for all four brands;
 - Brand checks are handled by an NSIS plugin.
 
-**I'll still have to take a better look at this.**
-
+**EDIT: This is most likely handled by a DMI check, which checks for OEM info in your BIOS. You could change the VMWare bios to check this, I'll try that later.**
 The brands are Acer, eMachines, Gateway and Packard Bell.
 
 ## App list (in ``en.ini``)
