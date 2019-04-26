@@ -9,8 +9,6 @@ Adding your own software to Welcome Center is suprisingly easy: you just have to
 
 Welcome Center is available for download from [here](https://mega.nz/#!yC4jiYSA!ekG2NPBiAopkU3RGRVVQ7sPXC8EspxceuCcH_Rv1EDo). 
 
-**NOTE: Welcome Center is provided under fair use for research purposes.**
-
 ## Here's what you have to do to add your own app:
 1. Open your language file (for example ``en.ini``). To learn more about language files, read the Languages section below.
 
